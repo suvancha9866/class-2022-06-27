@@ -1,0 +1,19 @@
+---
+title: "Baseball Hall of Fame"
+author: "Suvan Chatakondu"
+date: '2022-06-28'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(rvest)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+baseball_url <- "https://en.wikipedia.org/wiki/List_of_members_of_the_Baseball_Hall_of_Fame"
+
+read_html(baseball_url)
+```
+
