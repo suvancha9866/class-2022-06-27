@@ -7,13 +7,33 @@ output: html_document
 
 ```{r setup, include=FALSE}
 library(tidyverse)
+library(janitor)
 library(rvest)
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r}
+
+```{r getdata, echo = FALSE}
 baseball_url <- "https://en.wikipedia.org/wiki/List_of_members_of_the_Baseball_Hall_of_Fame"
 
-read_html(baseball_url)
+x <- baseball_url |> 
+  read_html(baseball_url) |>
+  html_elements("table") |> 
+  html_table() 
+```
+
+```{r accessingdata. echo = FALSE}
+x[[3]] |> 
+  clean_names() |> 
+  ggplot(mapping = aes(x = year)) +
+  geom_bar() + # There are footnote problems that need to be addressed
+  xlim(1936,2022) +
+  theme_classic() +
+  labs(title = "Number of Baseball Hall of Fall Inductees Each Year",
+       subtitle = "Gaps occur during WW2 and COVID-19",
+       x = "Year",
+       y = "Count",
+       caption = 'Wikipedia')
+  
 ```
 
