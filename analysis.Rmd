@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
-```{r getdata, echo = FALSE}
+```{r getdata, echo = FALSE, warning = FALSE}
 baseball_url <- "https://en.wikipedia.org/wiki/List_of_members_of_the_Baseball_Hall_of_Fame"
 
 x <- baseball_url |> 
@@ -22,7 +22,7 @@ x <- baseball_url |>
   html_table() 
 ```
 
-```{r accessingdata. echo = FALSE}
+```{r accessingdata, echo = FALSE, warning = FALSE}
 x[[3]] |> 
   clean_names() |> 
   ggplot(mapping = aes(x = year)) +
